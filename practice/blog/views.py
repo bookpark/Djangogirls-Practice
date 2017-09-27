@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils import timezone
 
@@ -10,4 +9,12 @@ def post_list(request):
     context = {
         'posts': posts
     }
-    return render(request, 'post_list.html', context)
+    return render(request, 'blog/post_list.html', context)
+
+
+def post_detail(request, pk):
+    post = Post.objects.get(pk=pk)
+    context = {
+        'post': post
+    }
+    return render(request, 'blog/post_detail.html', context)
